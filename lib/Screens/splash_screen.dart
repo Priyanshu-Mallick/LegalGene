@@ -34,20 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             color: Colors.black,
           ),
-          // Positioned(
-          //   top: 0,
-          //   left: 0,
-          //   right: 0,
-          //   child: Image.asset(
-          //     'assets/back.jpg',
-          //     fit: BoxFit.cover,
-          //     color: Colors.black.withOpacity(0.5), // Adjust the opacity to blend with the black background
-          //     colorBlendMode: BlendMode.darken, // Blend mode to achieve the desired effect
-          //   ),
-          // ),
-
-          // Background GIF
-          // Background GIF
           Positioned(
             top: MediaQuery.of(context).size.height * 0.2, // Adjust this value to move the GIF up or down
             left: 0,
@@ -56,7 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
               'assets/splash.gif',
             ) : Image.asset('assets/logo.png'),
           ),
-          // Display the button if animation is complete
           // Display the button if animation is complete
           if (_animationComplete)
             Positioned(
@@ -108,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Register'),
+                          Text('Get Started'),
                           SizedBox(width: 3.0), // Adjust the spacing between text and icon
                           Icon(Icons.login), // Add your login icon here
                         ],
