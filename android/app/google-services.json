@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "119779839889",
+    "project_id": "legalgene-dc6ed",
+    "storage_bucket": "legalgene-dc6ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119779839889:android:912352ab093e4f59645430",
+        "android_client_info": {
+          "package_name": "com.example.legal_gene"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119779839889-p2ku47ui1164dqqklegvke9tldjimlse.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAKtbUIj0BcECUhXpx_BEFMnu6DJE3Ptg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119779839889-p2ku47ui1164dqqklegvke9tldjimlse.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "119779839889-2s14en28di5i8u4c9ahe98go7r9g12n6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.legalGene"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
