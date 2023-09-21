@@ -1,4 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../Services/auth_services.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({Key? key}) : super(key: key);
@@ -10,9 +14,15 @@ class UserLogin extends StatefulWidget {
 class _UserLoginState extends State<UserLogin> {
   double _animationValue = 1.0; // Variable to control the animation
 
+  Future<void> initializeFirebase() async {
+    await Firebase.initializeApp();
+    // _firestore = FirebaseFirestore.instance;
+  }
+
   @override
   void initState() {
     super.initState();
+    initializeFirebase();
     // Start the animation when the widget is created
     startAnimation();
   }
@@ -137,8 +147,23 @@ class _UserLoginState extends State<UserLogin> {
                       );
                     },
                     child: ElevatedButton.icon(
-                      onPressed: () {
-                        // Handle Google login
+                      onPressed: () async {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return WillPopScope(
+                              onWillPop: () async => false, // Disable popping with back button
+                              child: const Center(
+                                child: SpinKitFadingCircle(
+                                  color: Color(0xFFFCBB04),
+                                  size: 50.0,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                        await AuthService().signInWithGoogle(context);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFFCBB04),
