@@ -231,7 +231,7 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
                     ),
                     label: const Text('Camera'),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFCBB04)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -250,7 +250,7 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
                     icon: const Icon(CupertinoIcons.photo),
                     label: const Text('Gallery'),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFCBB04)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -269,246 +269,119 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
   }
 
   void _showChoiceBottomSheet(BuildContext context, int c, String ctext) async {
-    dynamic result;
-    if(c == 1) {
-      result = await showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        builder: (BuildContext context) {
-          return Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(70)),
-                    color: Color(0xFFFCBB04).withOpacity(0.5),
-                    border: Border.all(
-                        style: BorderStyle.solid,
-                        color: Color(0xFFFCBB04),
-                        width: 4)
-                ),
-                height: 400,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
-                  child: CupertinoPicker(
+    String? tempSelectedValue;
 
-                    scrollController: FixedExtentScrollController(
-                      initialItem: 3,
-                    ),
-                    itemExtent: 50,
-                    onSelectedItemChanged: (index) {
-                      setState(() {
-                        selectedAge = choices[index];
-                      });
-                    },
-                    children: choices.map((choice) {
-                      return Container(
-                        width: 400,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xFFFCBB04), width:2),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric( horizontal: 20),
-                          child: Center(
-                            child: Text(
-                              choice,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
+    tempSelectedValue = await showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(70)),
+                color: Color(0xFFFCBB04).withOpacity(0.5),
+                border: Border.all(
+                  style: BorderStyle.solid,
+                  color: Color(0xFFFCBB04),
+                  width: 4,
+                ),
+              ),
+              height: 400,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40.0),
+                child: CupertinoPicker(
+                  scrollController: FixedExtentScrollController(initialItem: 3),
+                  itemExtent: 50,
+                  onSelectedItemChanged: (index) {
+                    setState(() {
+                      tempSelectedValue = choices[index];
+                    });
+                  },
+                  children: choices.map((choice) {
+                    return Container(
+                      width: 400,
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xFFFCBB04), width: 2),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Center(
+                          child: Text(
+                            choice,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: mq.height*0.005,
+              left: mq.width*0.1,
+              right: mq.width*0.1,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context, tempSelectedValue);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  side: BorderSide.none,
+                  shape: const StadiumBorder(),
+                ),
+                child: Text(
+                  'OK',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ),
+            Positioned(
+              child: SizedBox(
+                height: 100,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    ctext,
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-              Positioned(
-                  child: SizedBox(
-                    height: 100,
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(ctext, style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white
-                      )),
-                    ),
-                  )
-              )
-            ],
-          );
-        },
-      );
-    }
-    else if(c == 2)
-    {
-      result = await showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        builder: (BuildContext context) {
-          return Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(70)),
-                    color: Color(0xFFFCBB04).withOpacity(0.5),
-                    border: Border.all(
-                        style: BorderStyle.solid,
-                        color: Color(0xFFFCBB04),
-                        width: 4)
-                ),
-                height: 400,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
-                  child: CupertinoPicker(
+            ),
+          ],
+        );
+      },
+    );
 
-                    scrollController: FixedExtentScrollController(
-                      initialItem: 3,
-                    ),
-                    itemExtent: 50,
-                    onSelectedItemChanged: (index) {
-                      setState(() {
-                        selectedSex = choices[index];
-                      });
-                    },
-                    children: choices.map((choice) {
-                      return Container(
-                        width: 400,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xFFFCBB04), width:2),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric( horizontal: 20),
-                          child: Center(
-                            child: Text(
-                              choice,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-              Positioned(
-                  child: SizedBox(
-                    height: 100,
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(ctext, style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white
-                      )),
-                    ),
-                  )
-              )
-            ],
-          );
-        },
-      );
-    }
-    else
-    {
-      result = await showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        builder: (BuildContext context) {
-          return Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(70)),
-                    color: Color(0xFFFCBB04).withOpacity(0.5),
-                    border: Border.all(
-                        style: BorderStyle.solid,
-                        color: Color(0xFFFCBB04),
-                        width: 4)
-                ),
-                height: 400,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
-                  child: CupertinoPicker(
-
-                    scrollController: FixedExtentScrollController(
-                      initialItem: 3,
-                    ),
-                    itemExtent: 50,
-                    onSelectedItemChanged: (index) {
-                      setState(() {
-                        selectedBlood = choices[index];
-                      });
-                    },
-                    children: choices.map((choice) {
-                      return Container(
-                        width: 400,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xFFFCBB04), width:2),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric( horizontal: 20),
-                          child: Center(
-                            child: Text(
-                              choice,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-              Positioned(
-                  child: SizedBox(
-                    height: 100,
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(ctext, style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white
-                      )),
-                    ),
-                  )
-              )
-            ],
-          );
-        },
-      );
-    }
-    if (result != null) {
-      if(c == 1) {
+    if (tempSelectedValue != null) {
+      if (c == 1) {
         setState(() {
-          selectedAge = result;
+          selectedAge = tempSelectedValue!;
         });
-      }
-      else if(c == 2) {
+      } else if (c == 2) {
         setState(() {
-          selectedSex = result;
+          selectedSex = tempSelectedValue!;
         });
-      }
-      else if(c == 3) {
+      } else if (c == 3) {
         setState(() {
-          selectedBlood = result;
+          selectedBlood = tempSelectedValue!;
         });
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -558,280 +431,248 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
   }
 
   Widget _buildContent(BuildContext context, String tabName) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black,
-      ),
-      padding: EdgeInsets.only(top: mq.height*0.05, bottom: mq.height*0.02, right: mq.width*0.02, left: mq.width*0.02),
-      child: Column(
-        children: [
-          const SizedBox(height: 10),
-          Stack(
-            children: [
-              SizedBox(
-                width: mq.width*0.3,
-                height: mq.height*0.141,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: userProfilePic.isNotEmpty
-                      ? Image.network(
-                    userProfilePic,
-                    fit: BoxFit.cover,
-                  )
-                      : Transform.scale(
-                    scale: 7.0, // Adjust this value to increase or decrease the icon size
-                    child: const Icon(CupertinoIcons.person_crop_circle_fill, color: Color(0xFFFCBB04),),
+    return SingleChildScrollView(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+        ),
+        padding: EdgeInsets.only(top: mq.height*0.05, bottom: mq.height*0.02, right: mq.width*0.02, left: mq.width*0.02),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Stack(
+              children: [
+                SizedBox(
+                  width: mq.width*0.3,
+                  height: mq.height*0.141,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: userProfilePic.isNotEmpty
+                        ? Image.network(
+                      userProfilePic,
+                      fit: BoxFit.cover,
+                    )
+                        : Transform.scale(
+                      scale: 7.0, // Adjust this value to increase or decrease the icon size
+                      child: const Icon(CupertinoIcons.person_crop_circle_fill, color: Color(0xFFFCBB04),),
+                    ),
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 19,
-                  child: IconButton(
-                    onPressed: () => openImageBottomSheet(),
-                    color: Colors.black,
-                    icon: Icon(
-                      Icons.camera_alt_outlined,
-                      size: mq.height*0.02,
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 19,
+                    child: IconButton(
+                      onPressed: () => openImageBottomSheet(),
+                      color: Colors.black,
+                      icon: Icon(
+                        Icons.camera_alt_outlined,
+                        size: mq.height*0.02,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: mq.height*0.05),
+            Column(
+              children: [
+                SizedBox(height: mq.height*0.01),
+                TextField(
+                  readOnly: false,
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide(color: Colors.white), // Set the default border color here
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                    labelText: "Email-Id",
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFFFCBB04),
                     ),
+                    prefixIcon: const Icon(Icons.person_2_outlined),
+                    prefixIconColor: Color(0xFFFCBB04),
                   ),
+                  controller: TextEditingController(text: email),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: mq.height*0.015),
-          Column(
-            children: [
-              SizedBox(height: mq.height*0.01),
-              TextField(
-                readOnly: false,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
+                SizedBox(height: mq.height*0.02),
+                TextField(
+                  readOnly: false,
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide(color: Colors.white), // Set the default border color here
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                    labelText: "Full Name",
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFFFCBB04),
                     ),
+                    prefixIcon: const Icon(Icons.person_2_outlined),
+                    prefixIconColor: Color(0xFFFCBB04),
                   ),
-                  labelText: "Email-Id",
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.person_2_outlined),
-                  prefixIconColor: Color(0xFFFCBB04),
+                  controller: TextEditingController(text: userName),
                 ),
-                controller: TextEditingController(text: email),
-              ),
-              SizedBox(height: mq.height*0.02),
-              TextField(
-                readOnly: false,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
+                SizedBox(height: mq.height*0.02),
+                TextField(
+                  readOnly: false,
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide(color: Colors.white), // Set the default border color here
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                    labelText: 'Phone number',
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFFFCBB04),
                     ),
+                    prefixIcon: const Icon(Icons.phone),
+                    prefixIconColor: Color(0xFFFCBB04),
                   ),
-                  labelText: "Full Name",
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.person_2_outlined),
-                  prefixIconColor: Color(0xFFFCBB04),
+                  controller: _phoneNumberController, // Use the _phoneNumberController here
                 ),
-                controller: TextEditingController(text: userName),
-              ),
-              SizedBox(height: mq.height*0.02),
-              TextField(
-                readOnly: false,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
+                SizedBox(height: mq.height*0.02),
+                TextField(
+                  readOnly: true,
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide(color: Colors.white), // Set the default border color here
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                    labelText: 'Age',
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFFFCBB04),
                     ),
+                    prefixIcon: const Icon(Icons.calendar_today_outlined),
+                    prefixIconColor: Color(0xFFFCBB04),
                   ),
-                  labelText: 'Phone number',
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.phone),
-                  prefixIconColor: Color(0xFFFCBB04),
-                ),
-                controller: _phoneNumberController, // Use the _phoneNumberController here
-              ),
-              SizedBox(height: mq.height*0.02),
-              TextField(
-                readOnly: true,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Color(0xFFFCBB04),
-                    ),
-                  ),
-                  labelText: 'Age',
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.calendar_today_outlined),
-                  prefixIconColor: Color(0xFFFCBB04),
-                ),
-                controller: TextEditingController(text: selectedAge),
-                onTap: () {
-                  choices.clear();
-                  for (int i = 1; i <= 120; i++) {
-                    choices.add(i.toString());
-                  }
-                  _showChoiceBottomSheet(context, 1, "Select Age");
-                },
-              ),
-              SizedBox(height: mq.height*0.02),
-              TextField(
-                readOnly: true,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Color(0xFFFCBB04),
-                    ),
-                  ),
-                  labelText: 'Sex',
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.transgender_outlined),
-                  prefixIconColor: Color(0xFFFCBB04),
-                ),
-                controller: TextEditingController(text: selectedSex),
-                onTap: () {
-                  selectedSex = '';
-                  choices.clear();
-                  choices = ["Male", "Female", "Others"];
-                  _showChoiceBottomSheet(context, 2, "Select Sex");
-                },
-              ),
-
-              SizedBox(height: mq.height*0.02),
-              TextField(
-                readOnly: true,
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Colors.white,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Color(0xFFFCBB04),
-                    ),
-                  ),
-                  labelText: 'Blood Group',
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFCBB04),
-                  ),
-                  prefixIcon: const Icon(Icons.water_drop),
-                  prefixIconColor: Color(0xFFFCBB04),
-                ),
-                controller: TextEditingController(text: selectedBlood),
-                onTap: () {
-                  selectedBlood = '';
-                  choices.clear();
-                  choices = ["A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-"];
-                  _showChoiceBottomSheet(context, 3, "Select Blood Group");
-                },
-              ),
-              SizedBox(height: mq.height*0.05),
-              SizedBox(
-                width: double.infinity,
-                height: mq.height*0.055,
-                child: ElevatedButton(
-                  onPressed: () {
-                    CheckPhoneNumber(_phoneNumberController.text);
+                  controller: TextEditingController(text: selectedAge),
+                  onTap: () {
+                    choices.clear();
+                    for (int i = 1; i <= 120; i++) {
+                      choices.add(i.toString());
+                    }
+                    _showChoiceBottomSheet(context, 1, "Select Age");
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFCBB04),
-                    side: BorderSide.none,
-                    shape: const StadiumBorder(),
+                ),
+                SizedBox(height: mq.height*0.02),
+                TextField(
+                  readOnly: true,
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: mq.height*0.02),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: BorderSide(color: Colors.white), // Set the default border color here
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xFFFCBB04),
+                      ),
+                    ),
+                    labelText: 'Sex',
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFFCBB04),
+                    ),
+                    prefixIcon: const Icon(Icons.transgender_outlined),
+                    prefixIconColor: Color(0xFFFCBB04),
                   ),
-                  child: const Text(
-                    "Save Profile",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  controller: TextEditingController(text: selectedSex),
+                  onTap: () {
+                    selectedSex = '';
+                    choices.clear();
+                    choices = ["Male", "Female", "Others"];
+                    _showChoiceBottomSheet(context, 2, "Select Sex");
+                  },
+                ),
+                SizedBox(height: mq.height*0.07),
+                SizedBox(
+                  width: double.infinity,
+                  height: mq.height*0.055,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      CheckPhoneNumber(_phoneNumberController.text);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFFCBB04),
+                      side: BorderSide.none,
+                      shape: const StadiumBorder(),
+                    ),
+                    child: const Text(
+                      "Save Profile",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: mq.height*0.02),
-              // const Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text("Nirogh", style: TextStyle(
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 14,
-              //       color: Colors.black,
-              //     )),
-              //     Text("The result you can Trust!", style: TextStyle(
-              //       fontStyle: FontStyle.italic,
-              //       fontSize: 13,
-              //       color: Colors.black,
-              //     )),
-              //
-              //   ],
-              // )
-            ],
-          ),
-        ],
+                SizedBox(height: mq.height*0.16),
+                // const Column(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text("Nirogh", style: TextStyle(
+                //       fontWeight: FontWeight.bold,
+                //       fontSize: 14,
+                //       color: Colors.black,
+                //     )),
+                //     Text("The result you can Trust!", style: TextStyle(
+                //       fontStyle: FontStyle.italic,
+                //       fontSize: 13,
+                //       color: Colors.black,
+                //     )),
+                //
+                //   ],
+                // )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
