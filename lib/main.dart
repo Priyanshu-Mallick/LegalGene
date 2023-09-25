@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
       // home: SplashScreen(),
-      // home: isLoggedIn ? HomePage() : SplashScreen(),
-      home: UserProfile(email: '', userProfilePic: '', userName: '',),
+      home: isLoggedIn ? HomeScreen() : SplashScreen(),
+      // home: UserProfile(email: '', userProfilePic: '', userName: '',),
     );
   }
 }

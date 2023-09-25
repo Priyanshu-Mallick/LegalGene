@@ -118,7 +118,7 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => HomeScreen(),
           ),
         );
       }
@@ -386,6 +386,8 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
+    int ts = 0;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -393,12 +395,20 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
         body: TabBarView(
           controller: _tabController,
           children: [
-            _buildContent(context, 'You are a UP!'),
-            _buildContent(context, 'You are a Lawer!'),
+            _buildContent(context, 'You are a UP!', () {
+              setState(() {
+                ts = 1;
+              });
+            }),
+            _buildContent(context, 'You are a Lawer!', () {
+              setState(() {
+                ts = 2;
+              });
+            }),
           ],
         ),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(mq.height*0.055), // Adjust the height as needed
+          preferredSize: Size.fromHeight(mq.height * 0.055),
           child: AppBar(
             backgroundColor: Color(0xFFFCBB04),
             bottom: TabBar(
@@ -430,7 +440,7 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
     );
   }
 
-  Widget _buildContent(BuildContext context, String tabName) {
+  Widget _buildContent(BuildContext context, String tabName, Function() onTabSelected) {
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -669,6 +679,15 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
                 //
                 //   ],
                 // )
+                Tab(
+                  child: GestureDetector(
+                    onTap: onTabSelected,
+                    child: Text(
+                      tabName,
+                      style: GoogleFonts.montserratTextTheme().subtitle1?.copyWith(fontSize: 16),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
