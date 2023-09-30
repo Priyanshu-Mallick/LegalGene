@@ -10,13 +10,13 @@ class CaseProgress extends StatefulWidget {
 }
 
 class _CaseProgressState extends State<CaseProgress> {
-  int _selectedIndex = 1;
+  final int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFCBB04),
-        title: Text("Check Case Progress"),
+        backgroundColor: const Color(0xFFFCBB04),
+        title: const Text("Check Case Progress"),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
