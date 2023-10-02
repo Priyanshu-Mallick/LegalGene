@@ -118,7 +118,7 @@ class _UserProfileState extends State<UserProfile> with SingleTickerProviderStat
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => HomeScreen(),
+            builder: (context) => const HomeScreen(),
           ),
         );
       }
