@@ -279,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: theight * 0.022988506),
                   Container(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      subtitle: Text(
+                      subtitle: const Text(
                         "hbasbjxbsjbkjbkxkjsjxkjskjxkjs kjkjnkxnjksxn",
                         overflow: TextOverflow.clip,
                         style: TextStyle(color: Colors.white70),
@@ -325,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: theight * 0.022988506),
                   Container(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
