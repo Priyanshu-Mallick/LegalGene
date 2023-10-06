@@ -353,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      subtitle: Text(
+                      subtitle: const Text(
                         "hbasbjxbsjbkjbkxkjsjxkjskjxkjs kjkjnkxnjksxn",
                         overflow: TextOverflow.clip,
                         style: TextStyle(color: Colors.white70),
