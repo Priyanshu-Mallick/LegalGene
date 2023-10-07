@@ -362,7 +362,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {},
                         icon: Icon(
                           Icons.arrow_forward_ios,
-                          color: Color(0xFFFCBB04),
+                          color: const Color(0xFFFCBB04),
                           size: theight * 0.051085568,
                         ),
                       ),
